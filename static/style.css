@@ -1,0 +1,95 @@
+@import "compass/css3";
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  margin-top: 4rem;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+}
+input.empty {
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+}
+
+form input {
+  display: block;
+  width: 180px;
+  margin: 5px;
+  padding: 5px 0px;
+
+  border: 0;
+  border-bottom: 3px dotted black;
+
+  font-weight: 200;
+  text-align: center;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+form input::placeholder {
+  color: black;
+}
+
+form input:focus::placeholder {
+  color: transparent;
+}
+
+/* START OF LIST STYLING */
+
+ul {
+  list-style-type: circle;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* END OF LIST STYLING  */
+
+form input[type="submit"] {
+  /* font-family: "Gloria Hallelujah", cursive; */
+  border-radius: 15px;
+  letter-spacing: 5px;
+  font-weight: 800;
+  border: 0;
+  border-bottom: 0;
+  color: white;
+  background-color: #4a77e0;
+}
+
+form input[type="submit"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+}
+
+input:focus {
+  text-align: center;
+  color: black;
+  outline: none;
+  border: none;
+  border-bottom: 3px dotted black;
+}

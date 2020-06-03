@@ -16,7 +16,6 @@ debug = DebugToolbarExtension(app)
 
 connect_db(app)
 
-
 @app.route("/")
 def show_users():
     """Show a list of all users"""
@@ -34,6 +33,21 @@ def new_user_page():
     """Show a page with a new user form"""
     return render_template("form.html")
 
+@app.route("/users/<int:user_id>")
+def show_user_page(user_id):
+    """Show User Details"""
+    user = User.query.get_or_404(user_id)
+    posts = user.posts
+    return render_template("profile.html", user=user, full_name=user.get_full_name(), posts=posts)
+
+@app.route("/users/<int:user_id>/edit")
+def edit_form(user_id):
+    """Delete User"""
+    user = User.query.get_or_404(user_id)
+    return render_template("edit.html", user = user, full_name = user.get_full_name())
+
+
+# POST ROUTES #
 @app.route("/users/new", methods=["POST"])
 def create_user():
     first_name = request.form["first_name"]
@@ -43,14 +57,18 @@ def create_user():
     new_user_id = Utilities.add_user(first_name, last_name, img_url)
     return redirect(f"/users/{new_user_id}")
 
-@app.route("/users/<int:user_id>")
-def show_user_page(user_id):
-    """Show User Details"""
-    user = User.query.get_or_404(user_id)
-    return render_template("profile.html", user=user, full_name=user.get_full_name())
-
 @app.route("/users/<int:user_id>/delete", methods=["POST"])
 def delete_user(user_id):
     """Delete User"""
     Utilities.delete_user(user_id)
     return redirect("/users")
+
+@app.route("/users/<int:user_id>/edit", methods=["POST"])
+def edit_user(user_id):
+    """Edit User"""
+    first_name = request.form["first_name"]
+    last_name = request.form["last_name"]
+    img_url = request.form["img_url"]
+
+    Utilities.edit_user(user_id, first_name, last_name, img_url)
+    return redirect(f"/users/{user_id}")

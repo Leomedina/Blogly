@@ -87,7 +87,7 @@ form input {
   font-size: 1.3rem;
 }
 
-form input::placeholder {
+form input::placeholder, label{
   font-size: 1.3rem;
   color: #343434;
 }
@@ -139,4 +139,10 @@ img {
 
 .del-edit-btns .edit {
   flex-grow: 3;
+}
+
+.edit-form {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
 }

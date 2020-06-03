@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block title %} Blogsly - {{full_name}} {% endblock
+%} {% block content %}
+<section>
+  <div class="profile">
+    <img src="{{user.img_url}}" />
+    <div>
+      <h1>
+        <a href="/users">{{full_name}}</a>
+      </h1>
+      <form action="/users/{{user.id}}/edit" method="POST" class="edit-form">
+        <label for="first_name">First Name:</label>
+        <input
+          type="text"
+          name="first_name"
+          placeholder="{{user.first_name}}"
+          autocomplete="OFF"
+        />
+        <label for="last_name">Last Name:</label>
+        <input
+          type="text"
+          name="last_name"
+          placeholder="{{user.last_name}}"
+          autocomplete="OFF"
+        />
+        <label for="last_name">URL:</label>
+        <input
+          type="text"
+          name="img_url"
+          placeholder="{{user.img_url}}"
+          autocomplete="OFF"
+        />
+        <input type="submit" value="SUBMIT" />
+      </form>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

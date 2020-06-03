@@ -10,7 +10,7 @@ class Utilities:
 
     @classmethod
     def delete_user(cls, user_id):
-        user = db.session.query(User).filter_by(User.id==user_id).first()
+        user = db.session.query(User).filter(User.id==user_id).first()
         db.session.delete(user)
         db.session.commit()
         return True
@@ -38,7 +38,7 @@ class Utilities:
 
     @classmethod
     def delete_post(cls, post_id):
-        post = db.session.query(Post).filter_by(Post.id==post_id).first()
+        post = db.session.query(Post).filter(Post.id==post_id).first()
         db.session.delete(post)
         db.session.commit()
         return True

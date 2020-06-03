@@ -44,7 +44,8 @@ input[type="url"] {
   transition: background-size 0.2s;
 }
 
-a:hover {
+a:hover,
+input:focus {
   background-size: 4px 50px;
 }
 
@@ -83,12 +84,17 @@ form input {
   width: 70%;
   text-align: center;
   border-style: none;
+  font-size: 1.3rem;
 }
 
 form input::placeholder {
+  font-size: 1.3rem;
   color: #343434;
 }
 
+form input:focus {
+  font-size: 1.3rem;
+}
 form input:focus::placeholder {
   color: transparent;
 }
@@ -117,4 +123,20 @@ img {
   margin: 2rem;
   height: 40vh;
   object-fit: cover;
+}
+
+.del-edit-btns {
+  margin-top: 1rem;
+  display: flex;
+  flex-flow: row wrap; 
+}
+.del-edit-btns .del input{
+  background-color: lightcoral;
+}
+.del-edit-btns .del{
+  flex-grow: 1;
+}
+
+.del-edit-btns .edit {
+  flex-grow: 3;
 }

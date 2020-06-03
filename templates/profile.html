@@ -1,14 +1,20 @@
-{% extends 'base.html' %} {% block title %} Blogsly {user.first_name} {%
+{% extends 'base.html' %} {% block title %} Blogsly - {{full_name}} {%
 endblock %} {% block content %}
 <section>
   <div class="profile">
     <img src="{{user.img_url}}" />
     <div>
       <h1>
-        <a href="/users">{{user.first_name}} {{user.last_name}}</a>
+        <a href="/users">{{full_name}}</a>
       </h1>
-      <button>delete</button>
-      <button>edit</button>
+      <div class="del-edit-btns">
+        <form action="/users/{{user.id}}/delete" method="POST" class="del">
+          <input type="submit" value="DELETE" />
+        </form>
+        <form action="/users/{{user.id}}/edit" method="POST" class="edit">
+          <input type="submit" value="EDIT" />
+        </form>
+      </div>
     </div>
   </div>
 </section>

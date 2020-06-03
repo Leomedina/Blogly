@@ -13,7 +13,11 @@ class User(db.Model):
                     autoincrement = True)
     first_name = db.Column(db.String(15), nullable = False)
     last_name = db.Column(db.String(15), nullable = False)
-    img_url = db.Column(db.String(150), nullable= False, default = 'https://i.imgur.com/SczclW9.jpg')
+    img_url = db.Column(db.String(350), nullable= False, default = "https://st2.depositphotos.com/1009634/7235/v/450/depositphotos_72350117-stock-illustration-no-user-profile-picture-hand.jpg")
+    
+
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"
 
     def __repr__(self):
         return f"<UserId: {self.id} Name: {self.first_name} Last Name: {self.last_name} Profile Pic: {self.img_url}"

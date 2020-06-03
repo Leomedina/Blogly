@@ -37,6 +37,6 @@ class Utilities:
 
     @classmethod
     def delete_post(cls, post_id):
-        Post.query.filter_by(id=post_id).delete()
-        db.session.commit()
+        post = db.session.query(Post).filter(Post.id==post_id).first()
+        db.session.delete(post)
         return True

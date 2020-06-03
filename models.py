@@ -17,7 +17,8 @@ class User(db.Model):
     first_name = db.Column(db.String(15), nullable = False)
     last_name = db.Column(db.String(15), nullable = False)
     img_url = db.Column(db.String(600), nullable= False, default = "https://st2.depositphotos.com/1009634/7235/v/450/depositphotos_72350117-stock-illustration-no-user-profile-picture-hand.jpg")
-
+    posts = db.relationship("Post", backref="author_info", cascade="all, delete-orphan")
+    
     def __repr__(self):
         return f"<UserId: {self.id} Name: {self.first_name} Last Name: {self.last_name} Profile Pic: {self.img_url}"
 
@@ -35,7 +36,6 @@ class Post(db.Model):
     content = db.Column(db.String(500), nullable = False)
     created_at = db.Column(db.DateTime(timezone=True), default=func.now())
     author = db.Column(db.Integer, db.ForeignKey('users.id'))
-    author_info = db.relationship('User', backref='posts')
 
     def __repr__(self):
         author_info = f"PostId: {self.id} Author: {self.author_info.get_full_name()}"

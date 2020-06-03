@@ -22,7 +22,18 @@ def show_users():
     users = User.query.all()
     return render_template("home.html", users = users)
 
-@app.route("/", methods=["POST"])
+@app.route("/users")
+def display_all_users():
+    """Show a list of all users"""
+    users = User.query.all()
+    return render_template("users.html", users = users)
+
+@app.route("/users/new")
+def new_user_page():
+    """Show a page with a new user form"""
+    return render_template("form.html")
+
+@app.route("/users/new", methods=["POST"])
 def create_user():
     first_name = request.form["first_name"]
     last_name = request.form["last_name"]
@@ -32,9 +43,9 @@ def create_user():
     db.session.add(new_user)
     db.session.commit()
 
-    return redirect(f"/{new_user.id}")
+    return redirect(f"/users/{new_user.id}")
 
-@app.route("/<int:user_id>")
+@app.route("/users/<int:user_id>")
 def show_user_page(user_id):
     """Show User Details"""
     user = User.query.get_or_404(user_id)

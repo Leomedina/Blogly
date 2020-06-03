@@ -1,8 +1,16 @@
-{% extends 'base.html' %}
-{% block title %} Blogsly {user.first_name} {% endblock %}
-
-{% block content %}
-
-<h1>{{user.first_name}}</h1>
+{% extends 'base.html' %} {% block title %} Blogsly {user.first_name} {%
+endblock %} {% block content %}
+<section>
+  <div class="profile">
+    <img src="{{user.img_url}}" />
+    <div>
+      <h1>
+        <a href="/users">{{user.first_name}} {{user.last_name}}</a>
+      </h1>
+      <button>delete</button>
+      <button>edit</button>
+    </div>
+  </div>
+</section>
 
 {% endblock %}

@@ -1,82 +1,100 @@
-@import "compass/css3";
+:root {
+  --mainColor: #ff9800;
+}
 
-html,
-body {
+* {
   padding: 0;
   margin: 0;
-  font-family: "Montserrat", sans-serif;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+ul {
+  list-style: none;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  margin-top: 4rem;
+  background-color: #343434;
+  font-family: Source Sans Pro, sans-serif;
+  font-weight: 400;
+  font-size: 2rem;
+  height: 100vh;
 }
 
-div {
+a,
+h1,
+input[type="text"],
+input[type="url"] {
+  padding: 0.5rem;
+  background: linear-gradient(
+    to bottom,
+    var(--mainColor) 0%,
+    var(--mainColor) 100%
+  );
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 4px 4px;
+  color: #343434;
+  text-decoration: none;
+  transition: background-size 0.2s;
+}
+
+a:hover {
+  background-size: 4px 50px;
+}
+
+h1 {
+  padding: 0.5rem;
+  color: #343434;
+  font-family: Source Sans Pro, sans-serif;
+  font-size: 4rem;
+  font-weight: 900;
+}
+
+section {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-flow: row wrap;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background-color: #ededed;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.11), 0 2px 2px rgba(0, 0, 0, 0.11),
+    0 4px 4px rgba(0, 0, 0, 0.11), 0 6px 8px rgba(0, 0, 0, 0.11),
+    0 8px 16px rgba(0, 0, 0, 0.11);
 }
 
 form {
-  margin-top: 2rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 50%;
-}
-input.empty {
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
 }
 
 form input {
-  display: block;
-  width: 180px;
-  margin: 5px;
-  padding: 5px 0px;
-
-  border: 0;
-  border-bottom: 3px dotted black;
-
-  font-weight: 200;
+  font-family: Source Sans Pro, sans-serif;
+  background-color: transparent;
+  margin: 0.5rem;
+  padding: 0.7rem;
+  width: 70%;
   text-align: center;
-  letter-spacing: 5px;
-  text-transform: uppercase;
+  border-style: none;
 }
 
 form input::placeholder {
-  color: black;
+  color: #343434;
 }
 
 form input:focus::placeholder {
   color: transparent;
 }
 
-/* START OF LIST STYLING */
-
-ul {
-  list-style-type: circle;
-}
-
-a {
-  text-decoration: none;
-  color: black;
-}
-
-/* END OF LIST STYLING  */
-
 form input[type="submit"] {
-  /* font-family: "Gloria Hallelujah", cursive; */
-  border-radius: 15px;
-  letter-spacing: 5px;
-  font-weight: 800;
-  border: 0;
-  border-bottom: 0;
+  border-radius: 20px;
   color: white;
   background-color: #4a77e0;
 }
@@ -86,10 +104,17 @@ form input[type="submit"]:hover {
   box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
 }
 
-input:focus {
+.profile {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
   text-align: center;
-  color: black;
-  outline: none;
-  border: none;
-  border-bottom: 3px dotted black;
+}
+
+img {
+  width: 40vh;
+  border-radius: 20px;
+  margin: 2rem;
+  height: 40vh;
+  object-fit: cover;
 }

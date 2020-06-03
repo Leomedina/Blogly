@@ -22,6 +22,7 @@ def show_users():
     users = User.query.all()
     return render_template("home.html", users = users)
 
+# USER ROUTES #
 @app.route("/users")
 def display_all_users():
     """Show a list of all users"""
@@ -46,6 +47,21 @@ def edit_form(user_id):
     user = User.query.get_or_404(user_id)
     return render_template("edit.html", user = user, full_name = user.get_full_name())
 
+# USER CONTENT ROUTES
+@app.route("/posts/<int:post_id>")
+def show_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    user = post.author_info
+    return render_template("post.html", user = user, full_name = user.get_full_name(), post = post)
+
+@app.route("/users/<int:user_id>/posts/new")
+def new_post_form(user_id):
+    user = User.query.get_or_404(user_id)
+    return render_template('post-form.html', user = user, full_name = user.get_full_name())
+
+@app.route("/users/<int:user_id>/posts")
+def reroute(user_id):
+    return redirect(f'/users/{user_id}')
 
 # POST ROUTES #
 @app.route("/users/new", methods=["POST"])
@@ -72,3 +88,16 @@ def edit_user(user_id):
 
     Utilities.edit_user(user_id, first_name, last_name, img_url)
     return redirect(f"/users/{user_id}")
+
+@app.route("/users/<int:user_id>/posts/new", methods=["POST"])
+def add_new_post(user_id):
+    title = request.form["title"]
+    content = request.form["content"]
+    Utilities.new_post(user_id, title, content)
+    return redirect(f"/users/{user_id}")
+
+@app.route("/posts/<int:post_id>/delete", methods=["POST"])
+def delete_post(post_id):
+    """Delete Post"""
+    Utilities.delete_post(post_id)
+    return redirect("/")

@@ -27,3 +27,16 @@ class Utilities:
         db.session.commit()
 
         return True
+
+    @classmethod
+    def new_post(cls, user_id, title, content):
+        post = Post(title=title, content=content, author=user_id)
+        db.session.add(post)
+        db.session.commit()
+        return True
+
+    @classmethod
+    def delete_post(cls, post_id):
+        Post.query.filter_by(id=post_id).delete()
+        db.session.commit()
+        return True

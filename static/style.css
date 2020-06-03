@@ -74,26 +74,44 @@ form {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin: 1rem;
 }
 
 form input {
   font-family: Source Sans Pro, sans-serif;
   background-color: transparent;
   margin: 0.5rem;
-  padding: 0.7rem;
-  width: 70%;
+  padding: 0.8rem;
+  width: 100%;
   text-align: center;
   border-style: none;
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
-form input::placeholder, label{
+.new-post-div input[type="text"],
+.new-post-div input[type="url"] {
+  width: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--mainColor) 0%,
+    var(--mainColor) 100%
+  );
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 1px 1px;
+  color: #343434;
+  text-decoration: none;
+  transition: background-size 0.2s;
+}
+
+form input::placeholder,
+label {
   font-size: 1.3rem;
   color: #343434;
 }
 
 form input:focus {
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 form input:focus::placeholder {
   color: transparent;
@@ -118,31 +136,48 @@ form input[type="submit"]:hover {
 }
 
 img {
-  width: 40vh;
+  width: 30vh;
   border-radius: 20px;
   margin: 2rem;
-  height: 40vh;
+  height: 30vh;
   object-fit: cover;
 }
 
 .del-edit-btns {
   margin-top: 1rem;
   display: flex;
-  flex-flow: row wrap; 
-}
-.del-edit-btns .del input{
-  background-color: lightcoral;
-}
-.del-edit-btns .del{
-  flex-grow: 1;
+  flex-flow: row wrap;
 }
 
-.del-edit-btns .edit {
-  flex-grow: 3;
+.del input {
+  background-color: lightcoral !important;
+}
+
+.del {
+  width: 50%;
+}
+
+.edit {
+  width: 50%;
 }
 
 .edit-form {
   display: flex;
   flex-flow: column wrap;
-  justify-content: center;
+  justify-content: flex-start;
+}
+
+.content-btns {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+.content {
+  margin: 2rem;
+}
+
+.post-profile {
+  display: flex;
+  flex-flow: column nowrap;
 }

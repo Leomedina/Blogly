@@ -17,7 +17,13 @@ debug = DebugToolbarExtension(app)
 connect_db(app)
 
 @app.route("/")
-def show_users():
+def show_home():
+    """Show a list of all users"""
+    posts = Post.query.order_by(Post.created_at.desc()).all()
+    return render_template("home.html", posts=posts)
+    
+@app.route("/posts")
+def show_home_redirect():
     """Show a list of all users"""
     posts = Post.query.order_by(Post.created_at.desc()).all()
     return render_template("home.html", posts=posts)

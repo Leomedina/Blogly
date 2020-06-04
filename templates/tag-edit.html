@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block title %} Blogsly - {{full_name}} {% endblock
+%} {% block content %}
+<section>
+  <div>
+    <h1>
+      <a href="/tags/{{tag.id}}">{{tag.name}}</a>
+    </h1>
+    <form action="/tags/{{tag.id}}/edit" method="POST" class="edit-form">
+      <label for="name">Name:</label>
+      <input
+        type="text"
+        name="name"
+        placeholder="{{tag.name}}"
+        autocomplete="OFF"
+        required
+      />
+      <input type="submit" value="SUBMIT" />
+    </form>
+
+    <form action="/tags/{{tag.id}}/delete" method="POST">
+        <input type="submit" value="DELETE">
+    </form>
+  </div>
+</section>
+
+{% endblock %}

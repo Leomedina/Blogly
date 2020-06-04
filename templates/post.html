@@ -5,12 +5,19 @@ endblock %} {% block content %}
     <img src="{{user.img_url}}" />
     <div>
       <h1>{{post.title}}</h1>
-      <p>Author:
-        <a href="/users/{{user.id}}">{{full_name}}</a>
-      <p>
+      <p>Author: <a href="/users/{{user.id}}">{{full_name}}</a></p>
+
+      <p></p>
       <p class="content">{{post.content}}</p>
+      <p>
+        Tags: {% for tag in tags %}
+        <a href="/tags/{{tag.id}}">{{tag.name}}</a>
+        {% endfor %}
+      </p>
+
+      <p></p>
       <div class="content-btns">
-        <form action="/posts/{{post.id}}/delete" method="POST"class="del">
+        <form action="/posts/{{post.id}}/delete" method="POST" class="del">
           <input type="submit" value="DELETE" />
         </form>
         <form action="/posts/{{post.id}}/edit" class="edit">

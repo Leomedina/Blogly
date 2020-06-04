@@ -40,8 +40,8 @@ class Post(db.Model):
                         default=func.now())
     author = db.Column(db.Integer,
                         db.ForeignKey('users.id'), nullable = False)
-    post_tags = db.relationship("Post_Tag", backref="post_info", cascade="all, delete-orphan")
-
+    tags = db.relationship('Tag', secondary="post_tags", backref = "posts")
+    
     def __repr__(self):
         author_info = f"PostId: {self.id} Author: {self.author_info.get_full_name()}"
         post_info = f"Created At: {self.created_at} Content= {self.content}"
@@ -55,8 +55,6 @@ class Tag(db.Model):
                     primary_key = True,
                     autoincrement = True)
     name = db.Column(db.Text, nullable = False)
-
-    post_tags = db.relationship("Post_Tag", backref = "tag_info", cascade="all, delete-orphan")
 
 class Post_Tag(db.Model):
     """Many-To-Many Tag/Post Model"""

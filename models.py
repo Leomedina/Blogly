@@ -35,8 +35,8 @@ class Post(db.Model):
     title = db.Column(db.String(20), nullable = False)
     content = db.Column(db.String(500), nullable = False)
     created_at = db.Column(db.DateTime(timezone=True), default=func.now())
-    author = db.Column(db.Integer, db.ForeignKey('users.id'))
-
+    author = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    
     def __repr__(self):
         author_info = f"PostId: {self.id} Author: {self.author_info.get_full_name()}"
         post_info = f"Created At: {self.created_at} Content= {self.content}"

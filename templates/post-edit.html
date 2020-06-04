@@ -5,9 +5,9 @@
     <img src="{{user.img_url}}" />
     <div>
       <h1>
-        <a href="/users">{{full_name}}</a>
+        <a href="/users/{{user.id}}">{{full_name}}</a>
       </h1>
-      <form action="/users/{{user.id}}/edit" method="POST" class="edit-form">
+      <form action="/posts/{{post.id}}/edit" method="POST" class="edit-form">
         <label for="title">Title</label>
         <input
           type="title"
@@ -19,7 +19,7 @@
         <input
           type="text"
           name="content"
-          placeholder="{{post/content}}"
+          placeholder="{{post.content}}"
           autocomplete="OFF"
         />
         <input type="submit" value="SUBMIT" />

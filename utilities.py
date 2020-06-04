@@ -38,7 +38,18 @@ class Utilities:
 
     @classmethod
     def delete_post(cls, post_id):
-        post = db.session.query(Post).filter(Post.id==post_id).first()
+        post = Post.query.get_or_404(post_id)
         db.session.delete(post)
+        db.session.commit()
+        return True
+    
+    @classmethod
+    def edit_post(cls, post_id, title="", content=""):
+        post = Post.query.get_or_404(post_id)
+        if title:
+            post.title = title
+        if content:
+            post.content = content
+        db.session.add(post)
         db.session.commit()
         return True

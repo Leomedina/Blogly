@@ -19,8 +19,8 @@ connect_db(app)
 @app.route("/")
 def show_users():
     """Show a list of all users"""
-    users = User.query.all()
-    return render_template("home.html", users = users)
+    posts = Post.query.order_by(Post.created_at.desc()).all()
+    return render_template("home.html", posts=posts)
 
 # USER ROUTES #
 @app.route("/users")
@@ -63,6 +63,13 @@ def new_post_form(user_id):
 def reroute(user_id):
     return redirect(f'/users/{user_id}')
 
+@app.route("/posts/<int:post_id>/edit")
+def edit_post_form(post_id):
+    post = Post.query.get_or_404(post_id)
+    user = post.author_info
+    return render_template('post-edit.html', user = user, full_name = user.get_full_name(), post=post)
+
+
 # POST ROUTES #
 @app.route("/users/new", methods=["POST"])
 def create_user():
@@ -101,3 +108,10 @@ def delete_post(post_id):
     """Delete Post"""
     Utilities.delete_post(post_id)
     return redirect("/")
+
+@app.route("/posts/<int:post_id>/edit", methods=["POST"])
+def edit_post(post_id):
+    title = request.form["title"]
+    content = request.form["content"]
+    Utilities.edit_post(post_id, title, content)
+    return redirect(f"/posts/{post_id}")

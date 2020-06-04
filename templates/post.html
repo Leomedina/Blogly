@@ -10,10 +10,10 @@ endblock %} {% block content %}
       <p>
       <p class="content">{{post.content}}</p>
       <div class="content-btns">
-        <form action="/users/{{user.id}}/delete" method="POST"class="del">
+        <form action="/posts/{{post.id}}/delete" method="POST"class="del">
           <input type="submit" value="DELETE" />
         </form>
-        <form action="/users/{{user.id}}/edit" class="edit">
+        <form action="/posts/{{post.id}}/edit" class="edit">
           <input type="submit" value="EDIT" />
         </form>
       </div>
